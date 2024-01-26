@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        async function urlParam() {
+            const res = await axios.get('http://localhost:3000/api/person/111');
+            console.log(res);            
+        }
+        urlParam();
+   </script>
+</body> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        async function query() {
+            const res = await axios.get('/api/person/find', {
+                params: {
+                    name: '光',
+                    age: 20
+                }
+            });
+            console.log(res);            
+        }
+        query();
+   </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+</head>
+<body>
+    <input id="fileInput" type="file" multiple/>
+    <script>
+        const fileInput = document.querySelector('#fileInput');
+
+        async function formData() {
+            const data = new FormData();
+            data.set('name','光');
+            data.set('age', 20);
+            data.set('file1', fileInput.files[0]);
+            data.set('file2', fileInput.files[1]);
+
+            const res = await axios.post('/api/person/file', data, {
+                headers: { 'content-type': 'multipart/form-data' }
+            });
+            console.log(res);     
+        }
+
+        fileInput.onchange = formData;
+    </script>
+</body>
+</html>

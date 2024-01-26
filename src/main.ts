@@ -4,7 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useStaticAssets('public', {prefix:'/static'})
+  app.useStaticAssets('public', {prefix:'/static'}); //useStaticAssets 支持静态资源的请求
   await app.listen(3000);
 }
 bootstrap();
