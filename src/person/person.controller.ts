@@ -6,9 +6,9 @@ import { UpdatePersonDto } from './dto/update-person.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('api/person')
-export class PersonController {
+export class PersonController { 
   constructor(private readonly personService: PersonService) {}
-
+ 
   @Post('file')
   @UseInterceptors(AnyFilesInterceptor({
     dest:'uploads/' 
