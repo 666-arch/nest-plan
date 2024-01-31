@@ -4,9 +4,11 @@ import { AppService } from './app.service';
 import { XxxModule } from './xxx/xxx.module';
 import { PersonModule } from './person/person.module';
 import { OtherModule } from './other/other.module';
+import { AaaModule } from './aaa/aaa.module';
+import { BbbModule } from './bbb/bbb.module';
 
 @Module({
-  imports: [XxxModule, PersonModule, OtherModule],
+  imports: [XxxModule, PersonModule, OtherModule, AaaModule, BbbModule],
   controllers: [AppController],
   providers: [{
     provide:'app_service',
