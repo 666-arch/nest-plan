@@ -9,6 +9,25 @@ import { OtherModule } from './other/other.module';
 @Module({
   imports: [AaaModule, XxxModule, PersonModule, OtherModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [{
+    provide:'app_service',
+    useClass: AppService,
+  },
+  // {
+  //   provide:'person',
+  //   useValue:{
+  //     name:'aaa',
+  //     age:20
+  //   }
+  // },
+  {
+    provide:'person2',
+    useFactory(){
+      return {
+        name:'bbb',
+        desc:'ccc'
+      }
+    }
+  }],
 })
 export class AppModule {}
