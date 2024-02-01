@@ -23,3 +23,8 @@ $ nest generate resource 模块名称
 # build project
 $ nest build
 ```
+
+```bash
+# route middleware
+$ nest g middleware log --no-spec --flat
+```
