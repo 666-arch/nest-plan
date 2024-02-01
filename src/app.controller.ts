@@ -22,5 +22,19 @@ export class AppController {
     
     return this.appService.getHello() + this.otherService.xxx();
   }
+
+  @Get('aaa')
+  aaa(): string{
+    console.log('aaa...');
+    
+    return 'aaa'
+  }
+
+  @Get('bbb')
+  bbb(): string{
+    console.log('bbb...');
+    
+    return 'bbb';
+  }
 }
 
