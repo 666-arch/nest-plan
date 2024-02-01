@@ -3,12 +3,24 @@ import { CreateCccDto } from './dto/create-ccc.dto';
 import { UpdateCccDto } from './dto/update-ccc.dto';
 
 @Injectable()
-export class CccService implements OnModuleInit, OnApplicationBootstrap {
+export class CccService implements OnModuleInit, OnApplicationBootstrap, OnModuleDestroy, BeforeApplicationShutdown, OnApplicationShutdown {
   onModuleInit() {
     console.log('CccService onModuleInit.');
   }
   onApplicationBootstrap() {
     console.log('CccService onApplicationBootstrap.');
+  }
+
+  onModuleDestroy() {
+    console.log('CccService onModuleDestroy');
+  }
+
+  beforeApplicationShutdown(signal?: string) {
+    console.log('CccService beforeApplicationShutdown', signal);
+  }
+
+  onApplicationShutdown() {
+    console.log('CccService onApplicationShutdown');
   }
 
   create(createCccDto: CreateCccDto) {
