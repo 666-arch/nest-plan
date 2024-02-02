@@ -17,7 +17,6 @@ import { LoginGuard } from './login.guard';
   controllers: [AppController],
   providers: [
     AppService,
-
     {
       provide: APP_GUARD,
       useClass: LoginGuard
