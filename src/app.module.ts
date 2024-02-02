@@ -17,10 +17,10 @@ import { LoginGuard } from './login.guard';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_GUARD,
-      useClass: LoginGuard
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: LoginGuard
+    // },
     {
       provide: 'app_service',
       useClass: AppService,
