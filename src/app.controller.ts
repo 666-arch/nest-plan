@@ -1,16 +1,19 @@
-import { Controller, Get, Inject, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Inject, Query, UseGuards, UseInterceptors, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
 import { OtherService } from './other/other.service';
 import { LoginGuard } from './login.guard';
 import { TimeInterceptor } from './time.interceptor';
+import { ValidatePipe } from './validate.pipe';
 
 @Controller()
+// @UseInterceptors(TimeInterceptor)
+@UsePipes(ValidatePipe)
 export class AppController {
   constructor(
     // private readonly appService: AppService
     @Inject('app_service') private readonly appService: AppService,
     // @Inject('person') private readonly person: { name: string; age: number },
-    @Inject('person2') private readonly person2: { name: string; desc: string}
+    @Inject('person2') private readonly person2: { name: string; desc: string }
   ) { }
 
   @Inject(OtherService)
@@ -25,18 +28,23 @@ export class AppController {
 
   @Get('aaa')
   @UseGuards(LoginGuard)
-  aaa(): string{
+  aaa(): string {
     console.log('aaa...');
-    
+
     return 'aaa'
   }
 
   @Get('bbb')
   @UseInterceptors(TimeInterceptor)
-  bbb(): string{
+  bbb(): string {
     console.log('bbb...');
-    
+
     return 'bbb';
+  }
+
+  @Get('ccc')
+  ccc(@Query('num', ValidatePipe) num: number) {
+    return num + 1;
   }
 }
 

@@ -9,8 +9,10 @@ import { BbbModule } from './bbb/bbb.module';
 import { CccModule } from './ccc/ccc.module';
 import { DddModule } from './ddd/ddd.module';
 import { LogMiddleware } from './log.middleware';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoginGuard } from './login.guard';
+import { TimeInterceptor } from './time.interceptor';
+import { ValidatePipe } from './validate.pipe';
 
 @Module({
   imports: [XxxModule, PersonModule, OtherModule, AaaModule, BbbModule, CccModule, DddModule],
@@ -21,6 +23,14 @@ import { LoginGuard } from './login.guard';
     //   provide: APP_GUARD,
     //   useClass: LoginGuard
     // },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TimeInterceptor
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidatePipe
+    },
     {
       provide: 'app_service',
       useClass: AppService,
