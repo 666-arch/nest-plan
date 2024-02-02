@@ -9,6 +9,7 @@ import { TestFilter } from './test.filter';
 @Controller()
 // @UseInterceptors(TimeInterceptor)
 @UsePipes(ValidatePipe)
+// @UseFilters(TestFilter)
 export class AppController {
   constructor(
     // private readonly appService: AppService

@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { NextFunction } from 'express';
 import { ValidatePipe } from './validate.pipe';
+import { TestFilter } from './test.filter';
 // import { LoginGuard } from './login.guard';
 // import { TimeInterceptor } from './time.interceptor';
 
@@ -20,6 +21,7 @@ async function bootstrap() {
   // app.useGlobalGuards(new LoginGuard())
   // app.useGlobalInterceptors(new TimeInterceptor())
   app.useGlobalPipes(new ValidatePipe());
+  app.useGlobalFilters(new TestFilter());
 
   await app.listen(3000);
 
