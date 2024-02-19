@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Global, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { XxxModule } from './xxx/xxx.module';
@@ -15,15 +15,12 @@ import { TimeInterceptor } from './time.interceptor';
 import { ValidatePipe } from './validate.pipe';
 import { TestFilter } from './test.filter';
 
+@Global()
 @Module({
   imports: [XxxModule, PersonModule, OtherModule, AaaModule, BbbModule, CccModule, DddModule],
   controllers: [AppController],
   providers: [
     AppService,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: LoginGuard
-    // },
     {
       provide: APP_INTERCEPTOR,
       useClass: TimeInterceptor
@@ -40,6 +37,10 @@ import { TestFilter } from './test.filter';
       provide: 'app_service',
       useClass: AppService,
     },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: LoginGuard
+    // },
     // {
     //   provide:'person',
     //   useValue:{

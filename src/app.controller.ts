@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Query, UseFilters, UseGuards, UseInterceptors, UsePipes } from '@nestjs/common';
+import { Controller, Get, Inject, Optional, Query, UseFilters, UseGuards, UseInterceptors, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
 import { OtherService } from './other/other.service';
 import { LoginGuard } from './login.guard';
@@ -11,11 +11,14 @@ import { TestFilter } from './test.filter';
 @UsePipes(ValidatePipe)
 // @UseFilters(TestFilter)
 export class AppController {
+
+  @Optional()
+  // @Inject('app_service') private readonly appService: AppService
+  @Inject('person2') private readonly person2: { name: string; desc: string }
   constructor(
     // private readonly appService: AppService
-    @Inject('app_service') private readonly appService: AppService,
     // @Inject('person') private readonly person: { name: string; age: number },
-    @Inject('person2') private readonly person2: { name: string; desc: string }
+    @Optional() private appService: AppService
   ) { }
 
   @Inject(OtherService)

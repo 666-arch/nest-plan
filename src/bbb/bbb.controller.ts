@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query, ParseBoolPipe } from '@nestjs/common';
 import { BbbService } from './bbb.service';
 import { CreateBbbDto } from './dto/create-bbb.dto';
 import { UpdateBbbDto } from './dto/update-bbb.dto';
 
 @Controller('bbb')
 export class BbbController {
-  constructor(private readonly bbbService: BbbService) {}
+  constructor(private readonly bbbService: BbbService) { }
 
   @Post()
   create(@Body() createBbbDto: CreateBbbDto) {
@@ -20,6 +20,13 @@ export class BbbController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.bbbService.findOne(+id);
+  }
+
+  @Get('xxx/:aaa')
+  getHello2(@Param('aaa', ParseIntPipe) aaa: number, @Query('bbb', ParseBoolPipe) bbb: boolean) {
+    console.log(typeof aaa, typeof bbb);
+    console.log('aaa',aaa, bbb);
+    return 'hello'
   }
 
   @Patch(':id')
